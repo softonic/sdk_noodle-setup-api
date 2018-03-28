@@ -30,6 +30,7 @@
 namespace Softonic\NoodleSetupApiSdk\Client\Model;
 
 use \ArrayAccess;
+use \JsonSerializable;
 use \Softonic\NoodleSetupApiSdk\ObjectSerializer;
 
 /**
@@ -40,7 +41,7 @@ use \Softonic\NoodleSetupApiSdk\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Program implements ModelInterface, ArrayAccess
+class Program implements ModelInterface, ArrayAccess, JsonSerializable
 {
     const DISCRIMINATOR = null;
 
@@ -59,9 +60,13 @@ class Program implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'id_program' => 'string',
         'locale' => 'string',
+        'legal_advisory' => 'string',
+        'legal_note' => 'string',
         'show_download_button' => 'bool',
+        'dont_allow_download' => 'bool',
         'force_external_download' => 'bool',
-        'force_direct_download' => 'bool'
+        'is_top' => 'bool',
+        'is_sales_client' => 'bool'
     ];
 
     /**
@@ -72,9 +77,13 @@ class Program implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'id_program' => 'uuid',
         'locale' => null,
+        'legal_advisory' => null,
+        'legal_note' => null,
         'show_download_button' => null,
+        'dont_allow_download' => null,
         'force_external_download' => null,
-        'force_direct_download' => null
+        'is_top' => null,
+        'is_sales_client' => null
     ];
 
     /**
@@ -106,9 +115,13 @@ class Program implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'id_program' => 'id_program',
         'locale' => 'locale',
+        'legal_advisory' => 'legal_advisory',
+        'legal_note' => 'legal_note',
         'show_download_button' => 'show_download_button',
+        'dont_allow_download' => 'dont_allow_download',
         'force_external_download' => 'force_external_download',
-        'force_direct_download' => 'force_direct_download'
+        'is_top' => 'is_top',
+        'is_sales_client' => 'is_sales_client'
     ];
 
     /**
@@ -119,9 +132,13 @@ class Program implements ModelInterface, ArrayAccess
     protected static $setters = [
         'id_program' => 'setIdProgram',
         'locale' => 'setLocale',
+        'legal_advisory' => 'setLegalAdvisory',
+        'legal_note' => 'setLegalNote',
         'show_download_button' => 'setShowDownloadButton',
+        'dont_allow_download' => 'setDontAllowDownload',
         'force_external_download' => 'setForceExternalDownload',
-        'force_direct_download' => 'setForceDirectDownload'
+        'is_top' => 'setIsTop',
+        'is_sales_client' => 'setIsSalesClient'
     ];
 
     /**
@@ -132,9 +149,13 @@ class Program implements ModelInterface, ArrayAccess
     protected static $getters = [
         'id_program' => 'getIdProgram',
         'locale' => 'getLocale',
+        'legal_advisory' => 'getLegalAdvisory',
+        'legal_note' => 'getLegalNote',
         'show_download_button' => 'getShowDownloadButton',
+        'dont_allow_download' => 'getDontAllowDownload',
         'force_external_download' => 'getForceExternalDownload',
-        'force_direct_download' => 'getForceDirectDownload'
+        'is_top' => 'getIsTop',
+        'is_sales_client' => 'getIsSalesClient'
     ];
 
     /**
@@ -199,9 +220,13 @@ class Program implements ModelInterface, ArrayAccess
     {
         $this->container['id_program'] = isset($data['id_program']) ? $data['id_program'] : null;
         $this->container['locale'] = isset($data['locale']) ? $data['locale'] : 'en';
+        $this->container['legal_advisory'] = isset($data['legal_advisory']) ? $data['legal_advisory'] : 'null';
+        $this->container['legal_note'] = isset($data['legal_note']) ? $data['legal_note'] : 'null';
         $this->container['show_download_button'] = isset($data['show_download_button']) ? $data['show_download_button'] : false;
+        $this->container['dont_allow_download'] = isset($data['dont_allow_download']) ? $data['dont_allow_download'] : false;
         $this->container['force_external_download'] = isset($data['force_external_download']) ? $data['force_external_download'] : false;
-        $this->container['force_direct_download'] = isset($data['force_direct_download']) ? $data['force_direct_download'] : false;
+        $this->container['is_top'] = isset($data['is_top']) ? $data['is_top'] : false;
+        $this->container['is_sales_client'] = isset($data['is_sales_client']) ? $data['is_sales_client'] : false;
     }
 
     /**
@@ -284,6 +309,54 @@ class Program implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets legal_advisory
+     *
+     * @return string
+     */
+    public function getLegalAdvisory()
+    {
+        return $this->container['legal_advisory'];
+    }
+
+    /**
+     * Sets legal_advisory
+     *
+     * @param string $legal_advisory Type of legal advisory.  *              It can assume the following values: AUTO, WITHTOOLBAR, MANUAL, DISABLED
+     *
+     * @return $this
+     */
+    public function setLegalAdvisory($legal_advisory)
+    {
+        $this->container['legal_advisory'] = $legal_advisory;
+
+        return $this;
+    }
+
+    /**
+     * Gets legal_note
+     *
+     * @return string
+     */
+    public function getLegalNote()
+    {
+        return $this->container['legal_note'];
+    }
+
+    /**
+     * Sets legal_note
+     *
+     * @param string $legal_note Legal note, in case the advisory type is MANUAL. It can be up to 65535 bytes.
+     *
+     * @return $this
+     */
+    public function setLegalNote($legal_note)
+    {
+        $this->container['legal_note'] = $legal_note;
+
+        return $this;
+    }
+
+    /**
      * Gets show_download_button
      *
      * @return bool
@@ -296,13 +369,37 @@ class Program implements ModelInterface, ArrayAccess
     /**
      * Sets show_download_button
      *
-     * @param bool $show_download_button If the download button is shown for the program
+     * @param bool $show_download_button If the download button is shown for the program, DEPRECATED
      *
      * @return $this
      */
     public function setShowDownloadButton($show_download_button)
     {
         $this->container['show_download_button'] = $show_download_button;
+
+        return $this;
+    }
+
+    /**
+     * Gets dont_allow_download
+     *
+     * @return bool
+     */
+    public function getDontAllowDownload()
+    {
+        return $this->container['dont_allow_download'];
+    }
+
+    /**
+     * Sets dont_allow_download
+     *
+     * @param bool $dont_allow_download If true no download button should be shown
+     *
+     * @return $this
+     */
+    public function setDontAllowDownload($dont_allow_download)
+    {
+        $this->container['dont_allow_download'] = $dont_allow_download;
 
         return $this;
     }
@@ -332,25 +429,49 @@ class Program implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets force_direct_download
+     * Gets is_top
      *
      * @return bool
      */
-    public function getForceDirectDownload()
+    public function getIsTop()
     {
-        return $this->container['force_direct_download'];
+        return $this->container['is_top'];
     }
 
     /**
-     * Sets force_direct_download
+     * Sets is_top
      *
-     * @param bool $force_direct_download If the download for the program is forced to internal
+     * @param bool $is_top Arbitrary value to say that it is an important program, affects compliance rules
      *
      * @return $this
      */
-    public function setForceDirectDownload($force_direct_download)
+    public function setIsTop($is_top)
     {
-        $this->container['force_direct_download'] = $force_direct_download;
+        $this->container['is_top'] = $is_top;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_sales_client
+     *
+     * @return bool
+     */
+    public function getIsSalesClient()
+    {
+        return $this->container['is_sales_client'];
+    }
+
+    /**
+     * Sets is_sales_client
+     *
+     * @param bool $is_sales_client This program pays in some way to the company, affects compliance rules
+     *
+     * @return $this
+     */
+    public function setIsSalesClient($is_sales_client)
+    {
+        $this->container['is_sales_client'] = $is_sales_client;
 
         return $this;
     }
@@ -422,6 +543,16 @@ class Program implements ModelInterface, ArrayAccess
         }
 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+    }
+
+    /**
+     * Returns data which can be serialized by json_encode()
+     *
+     * @return mixed[]
+     */
+    public function jsonSerialize()
+    {
+        return $this->container;
     }
 }
 

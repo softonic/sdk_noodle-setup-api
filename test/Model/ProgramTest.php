@@ -92,9 +92,30 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "legal_advisory"
+     */
+    public function testPropertyLegalAdvisory()
+    {
+    }
+
+    /**
+     * Test attribute "legal_note"
+     */
+    public function testPropertyLegalNote()
+    {
+    }
+
+    /**
      * Test attribute "show_download_button"
      */
     public function testPropertyShowDownloadButton()
+    {
+    }
+
+    /**
+     * Test attribute "dont_allow_download"
+     */
+    public function testPropertyDontAllowDownload()
     {
     }
 
@@ -106,9 +127,16 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "force_direct_download"
+     * Test attribute "is_top"
      */
-    public function testPropertyForceDirectDownload()
+    public function testPropertyIsTop()
+    {
+    }
+
+    /**
+     * Test attribute "is_sales_client"
+     */
+    public function testPropertyIsSalesClient()
     {
     }
 }
