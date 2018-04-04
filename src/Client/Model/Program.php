@@ -59,7 +59,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
       */
     protected static $swaggerTypes = [
         'id_program' => 'string',
-        'locale' => 'string',
+        'id_locale' => 'string',
         'legal_advisory' => 'string',
         'legal_note' => 'string',
         'show_download_button' => 'bool',
@@ -76,7 +76,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
       */
     protected static $swaggerFormats = [
         'id_program' => 'uuid',
-        'locale' => null,
+        'id_locale' => null,
         'legal_advisory' => null,
         'legal_note' => null,
         'show_download_button' => null,
@@ -114,7 +114,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $attributeMap = [
         'id_program' => 'id_program',
-        'locale' => 'locale',
+        'id_locale' => 'id_locale',
         'legal_advisory' => 'legal_advisory',
         'legal_note' => 'legal_note',
         'show_download_button' => 'show_download_button',
@@ -131,7 +131,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $setters = [
         'id_program' => 'setIdProgram',
-        'locale' => 'setLocale',
+        'id_locale' => 'setIdLocale',
         'legal_advisory' => 'setLegalAdvisory',
         'legal_note' => 'setLegalNote',
         'show_download_button' => 'setShowDownloadButton',
@@ -148,7 +148,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $getters = [
         'id_program' => 'getIdProgram',
-        'locale' => 'getLocale',
+        'id_locale' => 'getIdLocale',
         'legal_advisory' => 'getLegalAdvisory',
         'legal_note' => 'getLegalNote',
         'show_download_button' => 'getShowDownloadButton',
@@ -199,8 +199,27 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$swaggerModelName;
     }
 
+    const LEGAL_ADVISORY_AUTO = 'AUTO';
+    const LEGAL_ADVISORY_WITHTOOLBAR = 'WITHTOOLBAR';
+    const LEGAL_ADVISORY_MANUAL = 'MANUAL';
+    const LEGAL_ADVISORY_DISABLED = 'DISABLED';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getLegalAdvisoryAllowableValues()
+    {
+        return [
+            self::LEGAL_ADVISORY_AUTO,
+            self::LEGAL_ADVISORY_WITHTOOLBAR,
+            self::LEGAL_ADVISORY_MANUAL,
+            self::LEGAL_ADVISORY_DISABLED,
+        ];
+    }
     
 
     /**
@@ -219,10 +238,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['id_program'] = isset($data['id_program']) ? $data['id_program'] : null;
-        $this->container['locale'] = isset($data['locale']) ? $data['locale'] : 'en';
-        $this->container['legal_advisory'] = isset($data['legal_advisory']) ? $data['legal_advisory'] : 'null';
-        $this->container['legal_note'] = isset($data['legal_note']) ? $data['legal_note'] : 'null';
-        $this->container['show_download_button'] = isset($data['show_download_button']) ? $data['show_download_button'] : false;
+        $this->container['id_locale'] = isset($data['id_locale']) ? $data['id_locale'] : null;
+        $this->container['legal_advisory'] = isset($data['legal_advisory']) ? $data['legal_advisory'] : 'AUTO';
+        $this->container['legal_note'] = isset($data['legal_note']) ? $data['legal_note'] : null;
+        $this->container['show_download_button'] = isset($data['show_download_button']) ? $data['show_download_button'] : true;
         $this->container['dont_allow_download'] = isset($data['dont_allow_download']) ? $data['dont_allow_download'] : false;
         $this->container['force_external_download'] = isset($data['force_external_download']) ? $data['force_external_download'] : false;
         $this->container['is_top'] = isset($data['is_top']) ? $data['is_top'] : false;
@@ -241,6 +260,17 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['id_program'] === null) {
             $invalidProperties[] = "'id_program' can't be null";
         }
+        if ($this->container['id_locale'] === null) {
+            $invalidProperties[] = "'id_locale' can't be null";
+        }
+        $allowedValues = $this->getLegalAdvisoryAllowableValues();
+        if (!is_null($this->container['legal_advisory']) && !in_array($this->container['legal_advisory'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'legal_advisory', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -254,6 +284,13 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     {
 
         if ($this->container['id_program'] === null) {
+            return false;
+        }
+        if ($this->container['id_locale'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getLegalAdvisoryAllowableValues();
+        if (!is_null($this->container['legal_advisory']) && !in_array($this->container['legal_advisory'], $allowedValues)) {
             return false;
         }
         return true;
@@ -285,25 +322,25 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets locale
+     * Gets id_locale
      *
      * @return string
      */
-    public function getLocale()
+    public function getIdLocale()
     {
-        return $this->container['locale'];
+        return $this->container['id_locale'];
     }
 
     /**
-     * Sets locale
+     * Sets id_locale
      *
-     * @param string $locale The Softonic locale
+     * @param string $id_locale The Softonic locale
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setIdLocale($id_locale)
     {
-        $this->container['locale'] = $locale;
+        $this->container['id_locale'] = $id_locale;
 
         return $this;
     }
@@ -321,12 +358,21 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets legal_advisory
      *
-     * @param string $legal_advisory Type of legal advisory.  *              It can assume the following values: AUTO, WITHTOOLBAR, MANUAL, DISABLED
+     * @param string $legal_advisory Type of legal advisory.
      *
      * @return $this
      */
     public function setLegalAdvisory($legal_advisory)
     {
+        $allowedValues = $this->getLegalAdvisoryAllowableValues();
+        if (!is_null($legal_advisory) && !in_array($legal_advisory, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'legal_advisory', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['legal_advisory'] = $legal_advisory;
 
         return $this;

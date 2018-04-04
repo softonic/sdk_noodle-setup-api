@@ -4,10 +4,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id_program** | **string** | The program id | 
-**locale** | **string** | The Softonic locale | [optional] [default to 'en']
-**legal_advisory** | **string** | Type of legal advisory.  *              It can assume the following values: AUTO, WITHTOOLBAR, MANUAL, DISABLED | [optional] [default to 'null']
-**legal_note** | **string** | Legal note, in case the advisory type is MANUAL. It can be up to 65535 bytes. | [optional] [default to 'null']
-**show_download_button** | **bool** | If the download button is shown for the program, DEPRECATED | [optional] [default to false]
+**id_locale** | **string** | The Softonic locale | 
+**legal_advisory** | **string** | Type of legal advisory. | [optional] [default to 'AUTO']
+**legal_note** | **string** | Legal note, in case the advisory type is MANUAL. It can be up to 65535 bytes. | [optional] 
+**show_download_button** | **bool** | If the download button is shown for the program, DEPRECATED | [optional] [default to true]
 **dont_allow_download** | **bool** | If true no download button should be shown | [optional] [default to false]
 **force_external_download** | **bool** | If the download for the program is forced to external | [optional] [default to false]
 **is_top** | **bool** | Arbitrary value to say that it is an important program, affects compliance rules | [optional] [default to false]

@@ -85,9 +85,9 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "locale"
+     * Test attribute "id_locale"
      */
-    public function testPropertyLocale()
+    public function testPropertyIdLocale()
     {
     }
 
