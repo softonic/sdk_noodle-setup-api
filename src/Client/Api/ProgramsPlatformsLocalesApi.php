@@ -1,6 +1,6 @@
 <?php
 /**
- * ProgramLocaleConfigurationApi
+ * ProgramsPlatformsLocalesApi
  * PHP version 5
  *
  * @category Class
@@ -40,14 +40,14 @@ use Softonic\NoodleSetupApiSdk\HeaderSelector;
 use Softonic\NoodleSetupApiSdk\ObjectSerializer;
 
 /**
- * ProgramLocaleConfigurationApi Class Doc Comment
+ * ProgramsPlatformsLocalesApi Class Doc Comment
  *
  * @category Class
  * @package  Softonic\NoodleSetupApiSdk
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ProgramLocaleConfigurationApi
+class ProgramsPlatformsLocalesApi
 {
     /**
      * @var ClientInterface
@@ -83,37 +83,41 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesGet
+     * Operation createProgramPlatformLocale
      *
-     * Finds configurations for program in all Softonic locales
+     * Creates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body body (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\Program[]
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale
      */
-    public function programsIdProgramLocalesGet($id_program)
+    public function createProgramPlatformLocale($id_program, $id_platform, $body)
     {
-        list($response) = $this->programsIdProgramLocalesGetWithHttpInfo($id_program);
+        list($response) = $this->createProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $body);
         return $response;
     }
 
     /**
-     * Operation programsIdProgramLocalesGetWithHttpInfo
+     * Operation createProgramPlatformLocaleWithHttpInfo
      *
-     * Finds configurations for program in all Softonic locales
+     * Creates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\Program[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale, HTTP status code, HTTP response headers (array of strings)
      */
-    public function programsIdProgramLocalesGetWithHttpInfo($id_program)
+    public function createProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $body)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program[]';
-        $request = $this->programsIdProgramLocalesGetRequest($id_program);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->createProgramPlatformLocaleRequest($id_program, $id_platform, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -161,10 +165,10 @@ class ProgramLocaleConfigurationApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\Program[]',
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -175,18 +179,20 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesGetAsync
+     * Operation createProgramPlatformLocaleAsync
      *
-     * Finds configurations for program in all Softonic locales
+     * Creates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesGetAsync($id_program)
+    public function createProgramPlatformLocaleAsync($id_program, $id_platform, $body)
     {
-        return $this->programsIdProgramLocalesGetAsyncWithHttpInfo($id_program)
+        return $this->createProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -195,19 +201,21 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesGetAsyncWithHttpInfo
+     * Operation createProgramPlatformLocaleAsyncWithHttpInfo
      *
-     * Finds configurations for program in all Softonic locales
+     * Creates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesGetAsyncWithHttpInfo($id_program)
+    public function createProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $body)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program[]';
-        $request = $this->programsIdProgramLocalesGetRequest($id_program);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->createProgramPlatformLocaleRequest($id_program, $id_platform, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -247,23 +255,37 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Create request for operation 'programsIdProgramLocalesGet'
+     * Create request for operation 'createProgramPlatformLocale'
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function programsIdProgramLocalesGetRequest($id_program)
+    protected function createProgramPlatformLocaleRequest($id_program, $id_platform, $body)
     {
         // verify the required parameter 'id_program' is set
         if ($id_program === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_program when calling programsIdProgramLocalesGet'
+                'Missing the required parameter $id_program when calling createProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_platform' is set
+        if ($id_platform === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_platform when calling createProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling createProgramPlatformLocale'
             );
         }
 
-        $resourcePath = '/programs/{id_program}/locales';
+        $resourcePath = '/programs/{id_program}/platforms/{id_platform}/locales';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -279,9 +301,20 @@ class ProgramLocaleConfigurationApi
                 $resourcePath
             );
         }
+        // path params
+        if ($id_platform !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_platform' . '}',
+                ObjectSerializer::toPathValue($id_platform),
+                $resourcePath
+            );
+        }
 
         // body params
         $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -290,7 +323,7 @@ class ProgramLocaleConfigurationApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                []
+                ['application/json']
             );
         }
 
@@ -337,7 +370,7 @@ class ProgramLocaleConfigurationApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'GET',
+            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -345,39 +378,41 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleDelete
+     * Operation deleteProgramPlatformLocale
      *
-     * Deletes a program configuration for a specific locale
+     * Deletes a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\Program
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale
      */
-    public function programsIdProgramLocalesIdLocaleDelete($id_program, $id_locale)
+    public function deleteProgramPlatformLocale($id_program, $id_platform, $id_locale)
     {
-        list($response) = $this->programsIdProgramLocalesIdLocaleDeleteWithHttpInfo($id_program, $id_locale);
+        list($response) = $this->deleteProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale);
         return $response;
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleDeleteWithHttpInfo
+     * Operation deleteProgramPlatformLocaleWithHttpInfo
      *
-     * Deletes a program configuration for a specific locale
+     * Deletes a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\Program, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale, HTTP status code, HTTP response headers (array of strings)
      */
-    public function programsIdProgramLocalesIdLocaleDeleteWithHttpInfo($id_program, $id_locale)
+    public function deleteProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesIdLocaleDeleteRequest($id_program, $id_locale);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->deleteProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale);
 
         try {
             $options = $this->createHttpClientOption();
@@ -428,7 +463,7 @@ class ProgramLocaleConfigurationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\Program',
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -439,19 +474,20 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleDeleteAsync
+     * Operation deleteProgramPlatformLocaleAsync
      *
-     * Deletes a program configuration for a specific locale
+     * Deletes a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesIdLocaleDeleteAsync($id_program, $id_locale)
+    public function deleteProgramPlatformLocaleAsync($id_program, $id_platform, $id_locale)
     {
-        return $this->programsIdProgramLocalesIdLocaleDeleteAsyncWithHttpInfo($id_program, $id_locale)
+        return $this->deleteProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -460,20 +496,21 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleDeleteAsyncWithHttpInfo
+     * Operation deleteProgramPlatformLocaleAsyncWithHttpInfo
      *
-     * Deletes a program configuration for a specific locale
+     * Deletes a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesIdLocaleDeleteAsyncWithHttpInfo($id_program, $id_locale)
+    public function deleteProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesIdLocaleDeleteRequest($id_program, $id_locale);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->deleteProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -513,30 +550,37 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Create request for operation 'programsIdProgramLocalesIdLocaleDelete'
+     * Create request for operation 'deleteProgramPlatformLocale'
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function programsIdProgramLocalesIdLocaleDeleteRequest($id_program, $id_locale)
+    protected function deleteProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale)
     {
         // verify the required parameter 'id_program' is set
         if ($id_program === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_program when calling programsIdProgramLocalesIdLocaleDelete'
+                'Missing the required parameter $id_program when calling deleteProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_platform' is set
+        if ($id_platform === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_platform when calling deleteProgramPlatformLocale'
             );
         }
         // verify the required parameter 'id_locale' is set
         if ($id_locale === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_locale when calling programsIdProgramLocalesIdLocaleDelete'
+                'Missing the required parameter $id_locale when calling deleteProgramPlatformLocale'
             );
         }
 
-        $resourcePath = '/programs/{id_program}/locales/{id_locale}';
+        $resourcePath = '/programs/{id_program}/platforms/{id_platform}/locales/{id_locale}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -549,6 +593,14 @@ class ProgramLocaleConfigurationApi
             $resourcePath = str_replace(
                 '{' . 'id_program' . '}',
                 ObjectSerializer::toPathValue($id_program),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id_platform !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_platform' . '}',
+                ObjectSerializer::toPathValue($id_platform),
                 $resourcePath
             );
         }
@@ -626,39 +678,39 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleGet
+     * Operation findProgramPlatformLocale
      *
-     * Finds configurations for program and Softonic locale
+     * Finds a program configuration for a specific platform for all locales
      *
      * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\Program[]
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]
      */
-    public function programsIdProgramLocalesIdLocaleGet($id_program, $id_locale)
+    public function findProgramPlatformLocale($id_program, $id_platform)
     {
-        list($response) = $this->programsIdProgramLocalesIdLocaleGetWithHttpInfo($id_program, $id_locale);
+        list($response) = $this->findProgramPlatformLocaleWithHttpInfo($id_program, $id_platform);
         return $response;
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleGetWithHttpInfo
+     * Operation findProgramPlatformLocaleWithHttpInfo
      *
-     * Finds configurations for program and Softonic locale
+     * Finds a program configuration for a specific platform for all locales
      *
      * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\Program[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function programsIdProgramLocalesIdLocaleGetWithHttpInfo($id_program, $id_locale)
+    public function findProgramPlatformLocaleWithHttpInfo($id_program, $id_platform)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program[]';
-        $request = $this->programsIdProgramLocalesIdLocaleGetRequest($id_program, $id_locale);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]';
+        $request = $this->findProgramPlatformLocaleRequest($id_program, $id_platform);
 
         try {
             $options = $this->createHttpClientOption();
@@ -709,7 +761,7 @@ class ProgramLocaleConfigurationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\Program[]',
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -720,19 +772,19 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleGetAsync
+     * Operation findProgramPlatformLocaleAsync
      *
-     * Finds configurations for program and Softonic locale
+     * Finds a program configuration for a specific platform for all locales
      *
      * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesIdLocaleGetAsync($id_program, $id_locale)
+    public function findProgramPlatformLocaleAsync($id_program, $id_platform)
     {
-        return $this->programsIdProgramLocalesIdLocaleGetAsyncWithHttpInfo($id_program, $id_locale)
+        return $this->findProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -741,20 +793,20 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocaleGetAsyncWithHttpInfo
+     * Operation findProgramPlatformLocaleAsyncWithHttpInfo
      *
-     * Finds configurations for program and Softonic locale
+     * Finds a program configuration for a specific platform for all locales
      *
      * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesIdLocaleGetAsyncWithHttpInfo($id_program, $id_locale)
+    public function findProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program[]';
-        $request = $this->programsIdProgramLocalesIdLocaleGetRequest($id_program, $id_locale);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]';
+        $request = $this->findProgramPlatformLocaleRequest($id_program, $id_platform);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -794,30 +846,30 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Create request for operation 'programsIdProgramLocalesIdLocaleGet'
+     * Create request for operation 'findProgramPlatformLocale'
      *
      * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function programsIdProgramLocalesIdLocaleGetRequest($id_program, $id_locale)
+    protected function findProgramPlatformLocaleRequest($id_program, $id_platform)
     {
         // verify the required parameter 'id_program' is set
         if ($id_program === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_program when calling programsIdProgramLocalesIdLocaleGet'
+                'Missing the required parameter $id_program when calling findProgramPlatformLocale'
             );
         }
-        // verify the required parameter 'id_locale' is set
-        if ($id_locale === null) {
+        // verify the required parameter 'id_platform' is set
+        if ($id_platform === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_locale when calling programsIdProgramLocalesIdLocaleGet'
+                'Missing the required parameter $id_platform when calling findProgramPlatformLocale'
             );
         }
 
-        $resourcePath = '/programs/{id_program}/locales/{id_locale}';
+        $resourcePath = '/programs/{id_program}/platforms/{id_platform}/locales';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -830,6 +882,306 @@ class ProgramLocaleConfigurationApi
             $resourcePath = str_replace(
                 '{' . 'id_program' . '}',
                 ObjectSerializer::toPathValue($id_program),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id_platform !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_platform' . '}',
+                ObjectSerializer::toPathValue($id_platform),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation readProgramPlatformLocale
+     *
+     * Reads a program configuration for a specific platform and locale
+     *
+     * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     *
+     * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]
+     */
+    public function readProgramPlatformLocale($id_program, $id_platform, $id_locale)
+    {
+        list($response) = $this->readProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale);
+        return $response;
+    }
+
+    /**
+     * Operation readProgramPlatformLocaleWithHttpInfo
+     *
+     * Reads a program configuration for a specific platform and locale
+     *
+     * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     *
+     * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function readProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale)
+    {
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]';
+        $request = $this->readProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation readProgramPlatformLocaleAsync
+     *
+     * Reads a program configuration for a specific platform and locale
+     *
+     * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function readProgramPlatformLocaleAsync($id_program, $id_platform, $id_locale)
+    {
+        return $this->readProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation readProgramPlatformLocaleAsyncWithHttpInfo
+     *
+     * Reads a program configuration for a specific platform and locale
+     *
+     * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function readProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale)
+    {
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]';
+        $request = $this->readProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'readProgramPlatformLocale'
+     *
+     * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function readProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale)
+    {
+        // verify the required parameter 'id_program' is set
+        if ($id_program === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_program when calling readProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_platform' is set
+        if ($id_platform === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_platform when calling readProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_locale' is set
+        if ($id_locale === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_locale when calling readProgramPlatformLocale'
+            );
+        }
+
+        $resourcePath = '/programs/{id_program}/platforms/{id_platform}/locales/{id_locale}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($id_program !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_program' . '}',
+                ObjectSerializer::toPathValue($id_program),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id_platform !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_platform' . '}',
+                ObjectSerializer::toPathValue($id_platform),
                 $resourcePath
             );
         }
@@ -907,41 +1259,43 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocalePatch
+     * Operation replaceProgramPlatformLocale
      *
-     * Updates a program configuration for a specific locale
+     * Replaces a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body body (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\Program
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale
      */
-    public function programsIdProgramLocalesIdLocalePatch($id_program, $id_locale, $body)
+    public function replaceProgramPlatformLocale($id_program, $id_platform, $id_locale, $body)
     {
-        list($response) = $this->programsIdProgramLocalesIdLocalePatchWithHttpInfo($id_program, $id_locale, $body);
+        list($response) = $this->replaceProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale, $body);
         return $response;
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocalePatchWithHttpInfo
+     * Operation replaceProgramPlatformLocaleWithHttpInfo
      *
-     * Updates a program configuration for a specific locale
+     * Replaces a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\Program, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale, HTTP status code, HTTP response headers (array of strings)
      */
-    public function programsIdProgramLocalesIdLocalePatchWithHttpInfo($id_program, $id_locale, $body)
+    public function replaceProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale, $body)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesIdLocalePatchRequest($id_program, $id_locale, $body);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->replaceProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -992,7 +1346,7 @@ class ProgramLocaleConfigurationApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\Program',
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1003,20 +1357,21 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocalePatchAsync
+     * Operation replaceProgramPlatformLocaleAsync
      *
-     * Updates a program configuration for a specific locale
+     * Replaces a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesIdLocalePatchAsync($id_program, $id_locale, $body)
+    public function replaceProgramPlatformLocaleAsync($id_program, $id_platform, $id_locale, $body)
     {
-        return $this->programsIdProgramLocalesIdLocalePatchAsyncWithHttpInfo($id_program, $id_locale, $body)
+        return $this->replaceProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1025,21 +1380,22 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesIdLocalePatchAsyncWithHttpInfo
+     * Operation replaceProgramPlatformLocaleAsyncWithHttpInfo
      *
-     * Updates a program configuration for a specific locale
+     * Replaces a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesIdLocalePatchAsyncWithHttpInfo($id_program, $id_locale, $body)
+    public function replaceProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale, $body)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesIdLocalePatchRequest($id_program, $id_locale, $body);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->replaceProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1079,37 +1435,44 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Create request for operation 'programsIdProgramLocalesIdLocalePatch'
+     * Create request for operation 'replaceProgramPlatformLocale'
      *
      * @param  string $id_program Program identifier (required)
+     * @param  string $id_platform Platform identifier (required)
      * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function programsIdProgramLocalesIdLocalePatchRequest($id_program, $id_locale, $body)
+    protected function replaceProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale, $body)
     {
         // verify the required parameter 'id_program' is set
         if ($id_program === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_program when calling programsIdProgramLocalesIdLocalePatch'
+                'Missing the required parameter $id_program when calling replaceProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_platform' is set
+        if ($id_platform === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_platform when calling replaceProgramPlatformLocale'
             );
         }
         // verify the required parameter 'id_locale' is set
         if ($id_locale === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_locale when calling programsIdProgramLocalesIdLocalePatch'
+                'Missing the required parameter $id_locale when calling replaceProgramPlatformLocale'
             );
         }
         // verify the required parameter 'body' is set
         if ($body === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling programsIdProgramLocalesIdLocalePatch'
+                'Missing the required parameter $body when calling replaceProgramPlatformLocale'
             );
         }
 
-        $resourcePath = '/programs/{id_program}/locales/{id_locale}';
+        $resourcePath = '/programs/{id_program}/platforms/{id_platform}/locales/{id_locale}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1126,297 +1489,10 @@ class ProgramLocaleConfigurationApi
             );
         }
         // path params
-        if ($id_locale !== null) {
+        if ($id_platform !== null) {
             $resourcePath = str_replace(
-                '{' . 'id_locale' . '}',
-                ObjectSerializer::toPathValue($id_locale),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'PATCH',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation programsIdProgramLocalesIdLocalePut
-     *
-     * Replaces a program configuration for a specific locale
-     *
-     * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
-     *
-     * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\Program
-     */
-    public function programsIdProgramLocalesIdLocalePut($id_program, $id_locale, $body)
-    {
-        list($response) = $this->programsIdProgramLocalesIdLocalePutWithHttpInfo($id_program, $id_locale, $body);
-        return $response;
-    }
-
-    /**
-     * Operation programsIdProgramLocalesIdLocalePutWithHttpInfo
-     *
-     * Replaces a program configuration for a specific locale
-     *
-     * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
-     *
-     * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\Program, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function programsIdProgramLocalesIdLocalePutWithHttpInfo($id_program, $id_locale, $body)
-    {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesIdLocalePutRequest($id_program, $id_locale, $body);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\Program',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation programsIdProgramLocalesIdLocalePutAsync
-     *
-     * Replaces a program configuration for a specific locale
-     *
-     * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function programsIdProgramLocalesIdLocalePutAsync($id_program, $id_locale, $body)
-    {
-        return $this->programsIdProgramLocalesIdLocalePutAsyncWithHttpInfo($id_program, $id_locale, $body)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation programsIdProgramLocalesIdLocalePutAsyncWithHttpInfo
-     *
-     * Replaces a program configuration for a specific locale
-     *
-     * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function programsIdProgramLocalesIdLocalePutAsyncWithHttpInfo($id_program, $id_locale, $body)
-    {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesIdLocalePutRequest($id_program, $id_locale, $body);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'programsIdProgramLocalesIdLocalePut'
-     *
-     * @param  string $id_program Program identifier (required)
-     * @param  string $id_locale Locale identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function programsIdProgramLocalesIdLocalePutRequest($id_program, $id_locale, $body)
-    {
-        // verify the required parameter 'id_program' is set
-        if ($id_program === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id_program when calling programsIdProgramLocalesIdLocalePut'
-            );
-        }
-        // verify the required parameter 'id_locale' is set
-        if ($id_locale === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id_locale when calling programsIdProgramLocalesIdLocalePut'
-            );
-        }
-        // verify the required parameter 'body' is set
-        if ($body === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling programsIdProgramLocalesIdLocalePut'
-            );
-        }
-
-        $resourcePath = '/programs/{id_program}/locales/{id_locale}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($id_program !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id_program' . '}',
-                ObjectSerializer::toPathValue($id_program),
+                '{' . 'id_platform' . '}',
+                ObjectSerializer::toPathValue($id_platform),
                 $resourcePath
             );
         }
@@ -1497,39 +1573,43 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesPost
+     * Operation updateProgramPlatformLocale
      *
-     * Creates a program configuration for a specific locale
+     * Updates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body body (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\Program
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale
      */
-    public function programsIdProgramLocalesPost($id_program, $body)
+    public function updateProgramPlatformLocale($id_program, $id_platform, $id_locale, $body)
     {
-        list($response) = $this->programsIdProgramLocalesPostWithHttpInfo($id_program, $body);
+        list($response) = $this->updateProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale, $body);
         return $response;
     }
 
     /**
-     * Operation programsIdProgramLocalesPostWithHttpInfo
+     * Operation updateProgramPlatformLocaleWithHttpInfo
      *
-     * Creates a program configuration for a specific locale
+     * Updates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\Program, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale, HTTP status code, HTTP response headers (array of strings)
      */
-    public function programsIdProgramLocalesPostWithHttpInfo($id_program, $body)
+    public function updateProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale, $body)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesPostRequest($id_program, $body);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->updateProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1577,10 +1657,10 @@ class ProgramLocaleConfigurationApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 201:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\Program',
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1591,19 +1671,21 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesPostAsync
+     * Operation updateProgramPlatformLocaleAsync
      *
-     * Creates a program configuration for a specific locale
+     * Updates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesPostAsync($id_program, $body)
+    public function updateProgramPlatformLocaleAsync($id_program, $id_platform, $id_locale, $body)
     {
-        return $this->programsIdProgramLocalesPostAsyncWithHttpInfo($id_program, $body)
+        return $this->updateProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1612,20 +1694,22 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Operation programsIdProgramLocalesPostAsyncWithHttpInfo
+     * Operation updateProgramPlatformLocaleAsyncWithHttpInfo
      *
-     * Creates a program configuration for a specific locale
+     * Updates a program configuration for a specific platform and locale
      *
      * @param  string $id_program Program identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function programsIdProgramLocalesPostAsyncWithHttpInfo($id_program, $body)
+    public function updateProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale, $body)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\Program';
-        $request = $this->programsIdProgramLocalesPostRequest($id_program, $body);
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
+        $request = $this->updateProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1665,30 +1749,44 @@ class ProgramLocaleConfigurationApi
     }
 
     /**
-     * Create request for operation 'programsIdProgramLocalesPost'
+     * Create request for operation 'updateProgramPlatformLocale'
      *
      * @param  string $id_program Program identifier (required)
-     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\Program $body Program locale configuration object (required)
+     * @param  string $id_platform Platform identifier (required)
+     * @param  string $id_locale Locale identifier (required)
+     * @param  \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function programsIdProgramLocalesPostRequest($id_program, $body)
+    protected function updateProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale, $body)
     {
         // verify the required parameter 'id_program' is set
         if ($id_program === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id_program when calling programsIdProgramLocalesPost'
+                'Missing the required parameter $id_program when calling updateProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_platform' is set
+        if ($id_platform === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_platform when calling updateProgramPlatformLocale'
+            );
+        }
+        // verify the required parameter 'id_locale' is set
+        if ($id_locale === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_locale when calling updateProgramPlatformLocale'
             );
         }
         // verify the required parameter 'body' is set
         if ($body === null) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling programsIdProgramLocalesPost'
+                'Missing the required parameter $body when calling updateProgramPlatformLocale'
             );
         }
 
-        $resourcePath = '/programs/{id_program}/locales';
+        $resourcePath = '/programs/{id_program}/platforms/{id_platform}/locales/{id_locale}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1701,6 +1799,22 @@ class ProgramLocaleConfigurationApi
             $resourcePath = str_replace(
                 '{' . 'id_program' . '}',
                 ObjectSerializer::toPathValue($id_program),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id_platform !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_platform' . '}',
+                ObjectSerializer::toPathValue($id_platform),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id_locale !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id_locale' . '}',
+                ObjectSerializer::toPathValue($id_locale),
                 $resourcePath
             );
         }
@@ -1765,7 +1879,7 @@ class ProgramLocaleConfigurationApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'POST',
+            'PATCH',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

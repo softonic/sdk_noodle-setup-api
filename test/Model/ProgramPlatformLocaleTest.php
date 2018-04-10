@@ -1,6 +1,6 @@
 <?php
 /**
- * ProgramTest
+ * ProgramPlatformLocaleTest
  *
  * PHP version 5
  *
@@ -30,16 +30,16 @@
 namespace Softonic\NoodleSetupApiSdk;
 
 /**
- * ProgramTest Class Doc Comment
+ * ProgramPlatformLocaleTest Class Doc Comment
  *
  * @category    Class */
-// * @description Program
+// * @description ProgramPlatformLocale
 /**
  * @package     Softonic\NoodleSetupApiSdk
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ProgramTest extends \PHPUnit_Framework_TestCase
+class ProgramPlatformLocaleTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "Program"
+     * Test "ProgramPlatformLocale"
      */
-    public function testProgram()
+    public function testProgramPlatformLocale()
     {
     }
 
@@ -81,6 +81,13 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      * Test attribute "id_program"
      */
     public function testPropertyIdProgram()
+    {
+    }
+
+    /**
+     * Test attribute "id_platform"
+     */
+    public function testPropertyIdPlatform()
     {
     }
 
@@ -102,13 +109,6 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      * Test attribute "legal_note"
      */
     public function testPropertyLegalNote()
-    {
-    }
-
-    /**
-     * Test attribute "show_download_button"
-     */
-    public function testPropertyShowDownloadButton()
     {
     }
 

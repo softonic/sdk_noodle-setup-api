@@ -1,6 +1,6 @@
 <?php
 /**
- * ProgramLocaleConfigurationApiTest
+ * ProgramsPlatformsLocalesApiTest
  * PHP version 5
  *
  * @category Class
@@ -33,14 +33,14 @@ use \Softonic\NoodleSetupApiSdk\ApiException;
 use \Softonic\NoodleSetupApiSdk\ObjectSerializer;
 
 /**
- * ProgramLocaleConfigurationApiTest Class Doc Comment
+ * ProgramsPlatformsLocalesApiTest Class Doc Comment
  *
  * @category Class
  * @package  Softonic\NoodleSetupApiSdk
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ProgramLocaleConfigurationApiTest extends \PHPUnit_Framework_TestCase
+class ProgramsPlatformsLocalesApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -72,62 +72,62 @@ class ProgramLocaleConfigurationApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for programsIdProgramLocalesGet
+     * Test case for createProgramPlatformLocale
      *
-     * Finds configurations for program in all Softonic locales.
+     * Creates a program configuration for a specific platform and locale.
      *
      */
-    public function testProgramsIdProgramLocalesGet()
+    public function testCreateProgramPlatformLocale()
     {
     }
 
     /**
-     * Test case for programsIdProgramLocalesIdLocaleDelete
+     * Test case for deleteProgramPlatformLocale
      *
-     * Deletes a program configuration for a specific locale.
+     * Deletes a program configuration for a specific platform and locale.
      *
      */
-    public function testProgramsIdProgramLocalesIdLocaleDelete()
+    public function testDeleteProgramPlatformLocale()
     {
     }
 
     /**
-     * Test case for programsIdProgramLocalesIdLocaleGet
+     * Test case for findProgramPlatformLocale
      *
-     * Finds configurations for program and Softonic locale.
+     * Finds a program configuration for a specific platform for all locales.
      *
      */
-    public function testProgramsIdProgramLocalesIdLocaleGet()
+    public function testFindProgramPlatformLocale()
     {
     }
 
     /**
-     * Test case for programsIdProgramLocalesIdLocalePatch
+     * Test case for readProgramPlatformLocale
      *
-     * Updates a program configuration for a specific locale.
+     * Reads a program configuration for a specific platform and locale.
      *
      */
-    public function testProgramsIdProgramLocalesIdLocalePatch()
+    public function testReadProgramPlatformLocale()
     {
     }
 
     /**
-     * Test case for programsIdProgramLocalesIdLocalePut
+     * Test case for replaceProgramPlatformLocale
      *
-     * Replaces a program configuration for a specific locale.
+     * Replaces a program configuration for a specific platform and locale.
      *
      */
-    public function testProgramsIdProgramLocalesIdLocalePut()
+    public function testReplaceProgramPlatformLocale()
     {
     }
 
     /**
-     * Test case for programsIdProgramLocalesPost
+     * Test case for updateProgramPlatformLocale
      *
-     * Creates a program configuration for a specific locale.
+     * Updates a program configuration for a specific platform and locale.
      *
      */
-    public function testProgramsIdProgramLocalesPost()
+    public function testUpdateProgramPlatformLocale()
     {
     }
 }

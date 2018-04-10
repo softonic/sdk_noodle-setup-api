@@ -1,13 +1,13 @@
-# Program
+# ProgramPlatformLocale
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id_program** | **string** | The program id | 
-**id_locale** | **string** | The Softonic locale | 
+**id_program** | **string** | Program identifier | 
+**id_platform** | **string** | Platform identifier | 
+**id_locale** | **string** | Locale identifier | 
 **legal_advisory** | **string** | Type of legal advisory. | [optional] [default to 'AUTO']
 **legal_note** | **string** | Legal note, in case the advisory type is MANUAL. It can be up to 65535 bytes. | [optional] 
-**show_download_button** | **bool** | If the download button is shown for the program, DEPRECATED | [optional] [default to true]
 **dont_allow_download** | **bool** | If true no download button should be shown | [optional] [default to false]
 **force_external_download** | **bool** | If the download for the program is forced to external | [optional] [default to false]
 **is_top** | **bool** | Arbitrary value to say that it is an important program, affects compliance rules | [optional] [default to false]

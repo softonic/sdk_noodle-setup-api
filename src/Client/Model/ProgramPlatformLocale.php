@@ -1,6 +1,6 @@
 <?php
 /**
- * Program
+ * ProgramPlatformLocale
  *
  * PHP version 5
  *
@@ -34,14 +34,14 @@ use \JsonSerializable;
 use \Softonic\NoodleSetupApiSdk\ObjectSerializer;
 
 /**
- * Program Class Doc Comment
+ * ProgramPlatformLocale Class Doc Comment
  *
  * @category Class
  * @package  Softonic\NoodleSetupApiSdk
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Program implements ModelInterface, ArrayAccess, JsonSerializable
+class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializable
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Program';
+    protected static $swaggerModelName = 'ProgramPlatformLocale';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +59,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
       */
     protected static $swaggerTypes = [
         'id_program' => 'string',
+        'id_platform' => 'string',
         'id_locale' => 'string',
         'legal_advisory' => 'string',
         'legal_note' => 'string',
-        'show_download_button' => 'bool',
         'dont_allow_download' => 'bool',
         'force_external_download' => 'bool',
         'is_top' => 'bool',
@@ -76,10 +76,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
       */
     protected static $swaggerFormats = [
         'id_program' => 'uuid',
+        'id_platform' => null,
         'id_locale' => null,
         'legal_advisory' => null,
         'legal_note' => null,
-        'show_download_button' => null,
         'dont_allow_download' => null,
         'force_external_download' => null,
         'is_top' => null,
@@ -114,10 +114,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $attributeMap = [
         'id_program' => 'id_program',
+        'id_platform' => 'id_platform',
         'id_locale' => 'id_locale',
         'legal_advisory' => 'legal_advisory',
         'legal_note' => 'legal_note',
-        'show_download_button' => 'show_download_button',
         'dont_allow_download' => 'dont_allow_download',
         'force_external_download' => 'force_external_download',
         'is_top' => 'is_top',
@@ -131,10 +131,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $setters = [
         'id_program' => 'setIdProgram',
+        'id_platform' => 'setIdPlatform',
         'id_locale' => 'setIdLocale',
         'legal_advisory' => 'setLegalAdvisory',
         'legal_note' => 'setLegalNote',
-        'show_download_button' => 'setShowDownloadButton',
         'dont_allow_download' => 'setDontAllowDownload',
         'force_external_download' => 'setForceExternalDownload',
         'is_top' => 'setIsTop',
@@ -148,10 +148,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $getters = [
         'id_program' => 'getIdProgram',
+        'id_platform' => 'getIdPlatform',
         'id_locale' => 'getIdLocale',
         'legal_advisory' => 'getLegalAdvisory',
         'legal_note' => 'getLegalNote',
-        'show_download_button' => 'getShowDownloadButton',
         'dont_allow_download' => 'getDontAllowDownload',
         'force_external_download' => 'getForceExternalDownload',
         'is_top' => 'getIsTop',
@@ -238,10 +238,10 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['id_program'] = isset($data['id_program']) ? $data['id_program'] : null;
+        $this->container['id_platform'] = isset($data['id_platform']) ? $data['id_platform'] : null;
         $this->container['id_locale'] = isset($data['id_locale']) ? $data['id_locale'] : null;
         $this->container['legal_advisory'] = isset($data['legal_advisory']) ? $data['legal_advisory'] : 'AUTO';
         $this->container['legal_note'] = isset($data['legal_note']) ? $data['legal_note'] : null;
-        $this->container['show_download_button'] = isset($data['show_download_button']) ? $data['show_download_button'] : true;
         $this->container['dont_allow_download'] = isset($data['dont_allow_download']) ? $data['dont_allow_download'] : false;
         $this->container['force_external_download'] = isset($data['force_external_download']) ? $data['force_external_download'] : false;
         $this->container['is_top'] = isset($data['is_top']) ? $data['is_top'] : false;
@@ -259,6 +259,9 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
 
         if ($this->container['id_program'] === null) {
             $invalidProperties[] = "'id_program' can't be null";
+        }
+        if ($this->container['id_platform'] === null) {
+            $invalidProperties[] = "'id_platform' can't be null";
         }
         if ($this->container['id_locale'] === null) {
             $invalidProperties[] = "'id_locale' can't be null";
@@ -286,6 +289,9 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
         if ($this->container['id_program'] === null) {
             return false;
         }
+        if ($this->container['id_platform'] === null) {
+            return false;
+        }
         if ($this->container['id_locale'] === null) {
             return false;
         }
@@ -310,13 +316,37 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets id_program
      *
-     * @param string $id_program The program id
+     * @param string $id_program Program identifier
      *
      * @return $this
      */
     public function setIdProgram($id_program)
     {
         $this->container['id_program'] = $id_program;
+
+        return $this;
+    }
+
+    /**
+     * Gets id_platform
+     *
+     * @return string
+     */
+    public function getIdPlatform()
+    {
+        return $this->container['id_platform'];
+    }
+
+    /**
+     * Sets id_platform
+     *
+     * @param string $id_platform Platform identifier
+     *
+     * @return $this
+     */
+    public function setIdPlatform($id_platform)
+    {
+        $this->container['id_platform'] = $id_platform;
 
         return $this;
     }
@@ -334,7 +364,7 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets id_locale
      *
-     * @param string $id_locale The Softonic locale
+     * @param string $id_locale Locale identifier
      *
      * @return $this
      */
@@ -398,30 +428,6 @@ class Program implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLegalNote($legal_note)
     {
         $this->container['legal_note'] = $legal_note;
-
-        return $this;
-    }
-
-    /**
-     * Gets show_download_button
-     *
-     * @return bool
-     */
-    public function getShowDownloadButton()
-    {
-        return $this->container['show_download_button'];
-    }
-
-    /**
-     * Sets show_download_button
-     *
-     * @param bool $show_download_button If the download button is shown for the program, DEPRECATED
-     *
-     * @return $this
-     */
-    public function setShowDownloadButton($show_download_button)
-    {
-        $this->container['show_download_button'] = $show_download_button;
 
         return $this;
     }
