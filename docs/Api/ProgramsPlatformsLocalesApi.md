@@ -166,7 +166,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **readProgramPlatformLocale**
-> \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[] readProgramPlatformLocale($id_program, $id_platform, $id_locale)
+> \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale readProgramPlatformLocale($id_program, $id_platform, $id_locale)
 
 Reads a program configuration for a specific platform and locale
 
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]**](../Model/ProgramPlatformLocale.md)
+[**\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale**](../Model/ProgramPlatformLocale.md)
 
 ### Authorization
 

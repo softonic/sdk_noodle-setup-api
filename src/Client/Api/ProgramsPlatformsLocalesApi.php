@@ -969,7 +969,7 @@ class ProgramsPlatformsLocalesApi
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]
+     * @return \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale
      */
     public function readProgramPlatformLocale($id_program, $id_platform, $id_locale)
     {
@@ -988,11 +988,11 @@ class ProgramsPlatformsLocalesApi
      *
      * @throws \Softonic\NoodleSetupApiSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale, HTTP status code, HTTP response headers (array of strings)
      */
     public function readProgramPlatformLocaleWithHttpInfo($id_program, $id_platform, $id_locale)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]';
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
         $request = $this->readProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale);
 
         try {
@@ -1044,7 +1044,7 @@ class ProgramsPlatformsLocalesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]',
+                        '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1090,7 +1090,7 @@ class ProgramsPlatformsLocalesApi
      */
     public function readProgramPlatformLocaleAsyncWithHttpInfo($id_program, $id_platform, $id_locale)
     {
-        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale[]';
+        $returnType = '\Softonic\NoodleSetupApiSdk\Client\Model\ProgramPlatformLocale';
         $request = $this->readProgramPlatformLocaleRequest($id_program, $id_platform, $id_locale);
 
         return $this->client
