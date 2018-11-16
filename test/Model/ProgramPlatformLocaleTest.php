@@ -127,13 +127,6 @@ class ProgramPlatformLocaleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "is_top"
-     */
-    public function testPropertyIsTop()
-    {
-    }
-
-    /**
      * Test attribute "is_sales_client"
      */
     public function testPropertyIsSalesClient()

@@ -45,6 +45,10 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
 {
     const DISCRIMINATOR = null;
 
+    const GET_ALL_ATTRIBUTES = true;
+
+    const GET_SET_ATTRIBUTES = false;
+
     /**
       * The original name of the model.
       *
@@ -65,7 +69,6 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
         'legal_note' => 'string',
         'dont_allow_download' => 'bool',
         'force_external_download' => 'bool',
-        'is_top' => 'bool',
         'is_sales_client' => 'bool'
     ];
 
@@ -82,7 +85,6 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
         'legal_note' => null,
         'dont_allow_download' => null,
         'force_external_download' => null,
-        'is_top' => null,
         'is_sales_client' => null
     ];
 
@@ -120,7 +122,6 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
         'legal_note' => 'legal_note',
         'dont_allow_download' => 'dont_allow_download',
         'force_external_download' => 'force_external_download',
-        'is_top' => 'is_top',
         'is_sales_client' => 'is_sales_client'
     ];
 
@@ -137,7 +138,6 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
         'legal_note' => 'setLegalNote',
         'dont_allow_download' => 'setDontAllowDownload',
         'force_external_download' => 'setForceExternalDownload',
-        'is_top' => 'setIsTop',
         'is_sales_client' => 'setIsSalesClient'
     ];
 
@@ -154,7 +154,6 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
         'legal_note' => 'getLegalNote',
         'dont_allow_download' => 'getDontAllowDownload',
         'force_external_download' => 'getForceExternalDownload',
-        'is_top' => 'getIsTop',
         'is_sales_client' => 'getIsSalesClient'
     ];
 
@@ -235,17 +234,16 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(array $data = [])
     {
-        $this->container['id_program'] = isset($data['id_program']) ? $data['id_program'] : null;
-        $this->container['id_platform'] = isset($data['id_platform']) ? $data['id_platform'] : null;
-        $this->container['id_locale'] = isset($data['id_locale']) ? $data['id_locale'] : null;
-        $this->container['legal_advisory'] = isset($data['legal_advisory']) ? $data['legal_advisory'] : 'AUTO';
-        $this->container['legal_note'] = isset($data['legal_note']) ? $data['legal_note'] : null;
-        $this->container['dont_allow_download'] = isset($data['dont_allow_download']) ? $data['dont_allow_download'] : false;
-        $this->container['force_external_download'] = isset($data['force_external_download']) ? $data['force_external_download'] : false;
-        $this->container['is_top'] = isset($data['is_top']) ? $data['is_top'] : false;
-        $this->container['is_sales_client'] = isset($data['is_sales_client']) ? $data['is_sales_client'] : false;
+        array_key_exists('id_program', $data) && $this->container['id_program'] = $data['id_program'];
+        array_key_exists('id_platform', $data) && $this->container['id_platform'] = $data['id_platform'];
+        array_key_exists('id_locale', $data) && $this->container['id_locale'] = $data['id_locale'];
+        array_key_exists('legal_advisory', $data) && $this->container['legal_advisory'] = $data['legal_advisory'];
+        array_key_exists('legal_note', $data) && $this->container['legal_note'] = $data['legal_note'];
+        array_key_exists('dont_allow_download', $data) && $this->container['dont_allow_download'] = $data['dont_allow_download'];
+        array_key_exists('force_external_download', $data) && $this->container['force_external_download'] = $data['force_external_download'];
+        array_key_exists('is_sales_client', $data) && $this->container['is_sales_client'] = $data['is_sales_client'];
     }
 
     /**
@@ -257,17 +255,17 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['id_program'] === null) {
+        if (array_key_exists('id_program', $this->container) && $this->container['id_program'] === null) {
             $invalidProperties[] = "'id_program' can't be null";
         }
-        if ($this->container['id_platform'] === null) {
+        if (array_key_exists('id_platform', $this->container) && $this->container['id_platform'] === null) {
             $invalidProperties[] = "'id_platform' can't be null";
         }
-        if ($this->container['id_locale'] === null) {
+        if (array_key_exists('id_locale', $this->container) && $this->container['id_locale'] === null) {
             $invalidProperties[] = "'id_locale' can't be null";
         }
         $allowedValues = $this->getLegalAdvisoryAllowableValues();
-        if (!is_null($this->container['legal_advisory']) && !in_array($this->container['legal_advisory'], $allowedValues)) {
+        if (array_key_exists('legal_advisory', $this->container) && ($this->container['legal_advisory'] !== null) && !in_array($this->container['legal_advisory'], $allowedValues)) {
             $invalidProperties[] = sprintf(
                 "invalid value for 'legal_advisory', must be one of '%s'",
                 implode("', '", $allowedValues)
@@ -286,17 +284,17 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     public function valid()
     {
 
-        if ($this->container['id_program'] === null) {
+        if (array_key_exists('id_program', $this->container) && $this->container['id_program'] === null) {
             return false;
         }
-        if ($this->container['id_platform'] === null) {
+        if (array_key_exists('id_platform', $this->container) && $this->container['id_platform'] === null) {
             return false;
         }
-        if ($this->container['id_locale'] === null) {
+        if (array_key_exists('id_locale', $this->container) && $this->container['id_locale'] === null) {
             return false;
         }
         $allowedValues = $this->getLegalAdvisoryAllowableValues();
-        if (!is_null($this->container['legal_advisory']) && !in_array($this->container['legal_advisory'], $allowedValues)) {
+        if (array_key_exists('legal_advisory', $this->container) && ($this->container['legal_advisory'] !== null) && !in_array($this->container['legal_advisory'], $allowedValues)) {
             return false;
         }
         return true;
@@ -481,30 +479,6 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     }
 
     /**
-     * Gets is_top
-     *
-     * @return bool
-     */
-    public function getIsTop()
-    {
-        return $this->container['is_top'];
-    }
-
-    /**
-     * Sets is_top
-     *
-     * @param bool $is_top Arbitrary value to say that it is an important program, affects compliance rules
-     *
-     * @return $this
-     */
-    public function setIsTop($is_top)
-    {
-        $this->container['is_top'] = $is_top;
-
-        return $this;
-    }
-
-    /**
      * Gets is_sales_client
      *
      * @return bool
@@ -536,7 +510,7 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
      */
     public function offsetExists($offset)
     {
-        return isset($this->container[$offset]);
+        return array_key_exists($offset, $this->container);
     }
 
     /**
@@ -605,6 +579,26 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     public function jsonSerialize()
     {
         return $this->container;
+    }
+
+    /**
+     * Returns data as array.
+     *
+     * @param bool $getAllAttributes Should convert with all attributes or just the set ones?
+     *
+     * @return array
+     */
+    public function toArray($getAllAttributes = self::GET_ALL_ATTRIBUTES)
+    {
+        if (!$getAllAttributes) {
+            return $this->container;
+        }
+
+        foreach (self::$attributeMap as $attribute) {
+            $data[$attribute] = $this->container[$attribute] ?? null;
+        }
+
+        return $data;
     }
 }
 
