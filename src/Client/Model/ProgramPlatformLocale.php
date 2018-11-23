@@ -249,7 +249,7 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Returns true if all attributes are set. False otherwise.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasAllAttributesSet()
     {
@@ -265,13 +265,13 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     {
         $invalidProperties = [];
 
-        if (array_key_exists('id_program', $this->container) && $this->container['id_program'] === null) {
+        if ($this->container['id_program'] === null) {
             $invalidProperties[] = "'id_program' can't be null";
         }
-        if (array_key_exists('id_platform', $this->container) && $this->container['id_platform'] === null) {
+        if ($this->container['id_platform'] === null) {
             $invalidProperties[] = "'id_platform' can't be null";
         }
-        if (array_key_exists('id_locale', $this->container) && $this->container['id_locale'] === null) {
+        if ($this->container['id_locale'] === null) {
             $invalidProperties[] = "'id_locale' can't be null";
         }
         $allowedValues = $this->getLegalAdvisoryAllowableValues();
@@ -425,7 +425,7 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
     public function setLegalAdvisory($legal_advisory)
     {
         $allowedValues = $this->getLegalAdvisoryAllowableValues();
-        if (!is_null($legal_advisory) && !in_array($legal_advisory, $allowedValues)) {
+        if (($legal_advisory !== null) && !in_array($legal_advisory, $allowedValues)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value for 'legal_advisory', must be one of '%s'",
@@ -538,7 +538,7 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
      *
      * @param integer $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
     public function offsetExists($offset)
     {
@@ -554,7 +554,7 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -567,7 +567,7 @@ class ProgramPlatformLocale implements ModelInterface, ArrayAccess, JsonSerializ
      */
     public function offsetSet($offset, $value)
     {
-        if (is_null($offset)) {
+        if (null === $offset) {
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
