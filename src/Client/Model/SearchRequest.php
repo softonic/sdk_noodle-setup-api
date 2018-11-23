@@ -198,6 +198,16 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Returns true if all attributes are set. False otherwise.
+     *
+     * @return boolean
+     */
+    public function hasAllAttributesSet()
+    {
+        return count($this->container) === count(self::$attributeMap);
+    }
+
+    /**
      * Show all the invalid properties with reasons.
      *
      * @return array invalid properties with reasons
@@ -219,12 +229,34 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Validate all the properties in the model
+     * Validate all the properties in the model ensuring the required ones are set
      * return true if all passed
      *
      * @return bool True if all properties are valid
      */
     public function valid()
+    {
+
+        if ($this->offsetGet('id_program') === null) {
+            return false;
+        }
+        if ($this->offsetGet('id_platform') === null) {
+            return false;
+        }
+        if ($this->offsetGet('id_locale') === null) {
+            return false;
+        }
+
+        return $this->validProperties();
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     *
+     * @return bool True if all properties are valid
+     */
+    public function validProperties()
     {
 
         if (array_key_exists('id_program', $this->container) && $this->container['id_program'] === null) {
@@ -247,7 +279,7 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function getIdProgram()
     {
-        return $this->container['id_program'];
+        return array_key_exists('id_program', $this->container) ? $this->container['id_program'] : null;
     }
 
     /**
@@ -271,7 +303,7 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function getIdPlatform()
     {
-        return $this->container['id_platform'];
+        return array_key_exists('id_platform', $this->container) ? $this->container['id_platform'] : null;
     }
 
     /**
@@ -295,7 +327,7 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function getIdLocale()
     {
-        return $this->container['id_locale'];
+        return array_key_exists('id_locale', $this->container) ? $this->container['id_locale'] : null;
     }
 
     /**
@@ -398,15 +430,16 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return array
      */
-    public function toArray($getAllAttributes = self::GET_ALL_ATTRIBUTES)
+    public function toArray($getAllAttributes = self::GET_SET_ATTRIBUTES)
     {
         if (!$getAllAttributes) {
             return $this->container;
         }
 
-        foreach (self::$attributeMap as $attribute) {
-            $data[$attribute] = $this->container[$attribute] ?? null;
-        }
+        $data = [];
+        $data['id_program'] = $this->getIdProgram();
+        $data['id_platform'] = $this->getIdPlatform();
+        $data['id_locale'] = $this->getIdLocale();
 
         return $data;
     }
