@@ -198,16 +198,6 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Returns true if all attributes are set. False otherwise.
-     *
-     * @return boolean
-     */
-    public function hasAllAttributesSet()
-    {
-        return count($this->container) === count(self::$attributeMap);
-    }
-
-    /**
      * Show all the invalid properties with reasons.
      *
      * @return array invalid properties with reasons
@@ -229,34 +219,12 @@ class SearchRequest implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Validate all the properties in the model ensuring the required ones are set
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-
-        if ($this->offsetGet('id_program') === null) {
-            return false;
-        }
-        if ($this->offsetGet('id_platform') === null) {
-            return false;
-        }
-        if ($this->offsetGet('id_locale') === null) {
-            return false;
-        }
-
-        return $this->validProperties();
-    }
-
-    /**
      * Validate all the properties in the model
      * return true if all passed
      *
      * @return bool True if all properties are valid
      */
-    public function validProperties()
+    public function valid()
     {
 
         if (array_key_exists('id_program', $this->container) && $this->container['id_program'] === null) {
